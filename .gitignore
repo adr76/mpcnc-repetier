@@ -14,10 +14,10 @@
 
 *.lnk
 *.zip
-*.hex
-/hex
-/res
-/sw
-/soft
-/test
+#.hex
+#/hex
+#/res
+#/sw
+#/soft
+#/test
 

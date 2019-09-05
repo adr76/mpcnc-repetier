@@ -245,7 +245,7 @@ It also can add a delay to wait for spindle to run on full speed.
 #define INVERT_Z_DIR 1
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
-#define Z_HOME_DIR 1
+#define Z_HOME_DIR -1
 #define X_MAX_LENGTH 600
 #define Y_MAX_LENGTH 600
 #define Z_MAX_LENGTH 203
@@ -573,7 +573,7 @@ Values must be in range 1..255
     "disableE": "0",
     "xHomeDir": "-1",
     "yHomeDir": "-1",
-    "zHomeDir": "1",
+    "zHomeDir": "-1",
     "xEndstopBack": 1,
     "yEndstopBack": 1,
     "zEndstopBack": 0,

@@ -15,9 +15,11 @@
 *.lnk
 *.zip
 *.hex
-/hex
-/res
-/sw
-/soft
-/test
+~$*
+Резервная_копия_*.cdr
+#/hex
+#/res
+#/sw
+#/soft
+#/test
 

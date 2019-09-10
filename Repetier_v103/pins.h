@@ -420,6 +420,7 @@ STEPPER_CURRENT_CONTROL
 #define HEATER_0_PIN       10
 #define HEATER_1_PIN       8
 #define HEATER_2_PIN       9
+
 // ANALOG NUMBERING
 #define TEMP_0_PIN         13   
 #define TEMP_1_PIN         14
@@ -427,6 +428,11 @@ STEPPER_CURRENT_CONTROL
 #define E0_PINS ORIG_E0_STEP_PIN,ORIG_E0_DIR_PIN,ORIG_E0_ENABLE_PIN,
 #define E1_PINS ORIG_E1_STEP_PIN,ORIG_E1_DIR_PIN,ORIG_E1_ENABLE_PIN,
 
+// JOYSTICK 
+#define ORIG_ADC_KEYPAD_PIN 13         // X-axis A13(D67) <-> TEMP_0_PIN
+#define ORIG_ADC_KEYPAD2_PIN 14        // Y-axis A14(D68) <-> TEMP_1_PIN
+//#define ORIG_ADC_KEYPAD3_PIN 15      // Z-axis A15(D69) <-> TEMP_2_PIN
+//#define JOY_BTN_PIN 40               // FAST/SLOW motion <-> MCP23017(GPB2)
 
 #else // RAMPS_V_1_1 or RAMPS_V_1_2 as default
 

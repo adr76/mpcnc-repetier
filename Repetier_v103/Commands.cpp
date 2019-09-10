@@ -56,6 +56,11 @@ void Commands::commandLoop() {
     }
     Printer::defaultLoopActions();
     //}
+    
+//#ifdef EXT_AJOYSTICK 
+    set_joystick_run();     // joystick 
+    //joy_print();
+//#endif
 }
 
 void Commands::checkForPeriodicalActions(bool allowNewMoves) {

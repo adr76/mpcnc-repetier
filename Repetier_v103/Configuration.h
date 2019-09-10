@@ -508,7 +508,13 @@ WARNING: Servos can draw a considerable amount of current. Make sure your system
 #define FEATURE_FAN_CONTROL 1
 #define FEATURE_FAN2_CONTROL 0
 #define FEATURE_CONTROLLER 11
-#define ADC_KEYPAD_PIN -1
+// -- JOYSTICK MOD
+//#define ADC_KEYPAD_PIN -1
+#define ADC_KEYPAD_PIN  13   // X-axis A13(D67) <-> TEMP_0_PIN
+#define ADC_KEYPAD2_PIN 14   // Y-axis A14(D68) <-> TEMP_1_PIN
+#define ADC_KEYPAD3_PIN -1   // Z-axis A15(D69) <-> TEMP_2_PIN
+#define JOGRATE 3            // fixed feedrate for slow moves during joystick moves
+// -- END JOYSTICK MOD
 #define LANGUAGE_EN_ACTIVE 1
 #define LANGUAGE_DE_ACTIVE 0
 #define LANGUAGE_NL_ACTIVE 0

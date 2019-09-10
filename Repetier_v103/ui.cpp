@@ -3742,17 +3742,80 @@ int UIDisplay::executeAction(unsigned int action, bool allowMoves) {
         case UI_ACTION_X_DOWN:
             if(!allowMoves) return action;
             PrintLine::moveRelativeDistanceInStepsReal(((action == UI_ACTION_X_UP) ? 1.0 : -1.0) * Printer::axisStepsPerMM[X_AXIS], 0, 0, 0, Printer::homingFeedrate[X_AXIS], false, false);
+            break;           
+        // -- JOYSTICK MOD X_AXIS
+        case UI_ACTION_X_UP001:
+        case UI_ACTION_X_DOWN001:
+            if(!allowMoves) return action;
+            PrintLine::moveRelativeDistanceInStepsReal(((action == UI_ACTION_X_UP001) ? 1.0 : -1.0) * (Printer::axisStepsPerMM[X_AXIS]/100), 0, 0, 0, JOGRATE, false,false);
+            break;          
+        case UI_ACTION_X_UP01:
+        case UI_ACTION_X_DOWN01:
+            if(!allowMoves) return action;
+            PrintLine::moveRelativeDistanceInStepsReal(((action == UI_ACTION_X_UP01) ? 1.0 : -1.0) * (Printer::axisStepsPerMM[X_AXIS]/10), 0, 0, 0, JOGRATE, false,false);
             break;
+        case UI_ACTION_X_UP1:
+        case UI_ACTION_X_DOWN1:
+            if(!allowMoves) return action;
+            PrintLine::moveRelativeDistanceInStepsReal(((action == UI_ACTION_X_UP1) ? 1.0 : -1.0) * Printer::axisStepsPerMM[X_AXIS], 0, 0, 0, JOGRATE, false,false);
+            break;
+        case UI_ACTION_X_UP10:
+        case UI_ACTION_X_DOWN10:
+            if(!allowMoves) return action;
+            PrintLine::moveRelativeDistanceInStepsReal(((action == UI_ACTION_X_UP10) ? 1.0 : -1.0) * (Printer::axisStepsPerMM[X_AXIS]*10), 0, 0, 0, JOGRATE, false,false);
+            break;
+        // -- END JOYSTICK MOD X_AXIS      
         case UI_ACTION_Y_UP:
         case UI_ACTION_Y_DOWN:
             if(!allowMoves) return action;
             PrintLine::moveRelativeDistanceInStepsReal(0, ((action == UI_ACTION_Y_UP) ? 1.0 : -1.0) * Printer::axisStepsPerMM[Y_AXIS], 0, 0, Printer::homingFeedrate[Y_AXIS], false, false);
+            break;          
+        // -- JOYSTICK MOD Y_AXIS
+        case UI_ACTION_Y_UP001:
+        case UI_ACTION_Y_DOWN001:
+            if(!allowMoves) return action;
+            PrintLine::moveRelativeDistanceInStepsReal(0, ((action == UI_ACTION_Y_UP001) ? 1.0 : -1.0) * Printer::axisStepsPerMM[Y_AXIS]/100, 0, 0, JOGRATE, false,false);
             break;
+        case UI_ACTION_Y_UP01:
+        case UI_ACTION_Y_DOWN01:
+            if(!allowMoves) return action;
+            PrintLine::moveRelativeDistanceInStepsReal(0, ((action == UI_ACTION_Y_UP01) ? 1.0 : -1.0) * Printer::axisStepsPerMM[Y_AXIS]/10, 0, 0, JOGRATE, false,false);
+            break;
+        case UI_ACTION_Y_UP1:
+        case UI_ACTION_Y_DOWN1:
+            if(!allowMoves) return action;
+            PrintLine::moveRelativeDistanceInStepsReal(0, ((action == UI_ACTION_Y_UP1) ? 1.0 : -1.0) * Printer::axisStepsPerMM[Y_AXIS], 0, 0, JOGRATE, false,false);
+            break;
+        case UI_ACTION_Y_UP10:
+        case UI_ACTION_Y_DOWN10:
+            if(!allowMoves) return action;
+            PrintLine::moveRelativeDistanceInStepsReal(0, ((action == UI_ACTION_Y_UP10) ? 1.0 : -1.0) * Printer::axisStepsPerMM[Y_AXIS]*10, 0, 0, JOGRATE, false,false);
+            break;
+        // -- END JOYSTICK MOD Y_AXIS
+        
         case UI_ACTION_Z_UP:
         case UI_ACTION_Z_DOWN:
             if(!allowMoves) return action;
             PrintLine::moveRelativeDistanceInStepsReal(0, 0, ((action == UI_ACTION_Z_UP) ? 1.0 : -1.0) * Printer::axisStepsPerMM[Z_AXIS], 0, Printer::homingFeedrate[Z_AXIS], false, false);
             break;
+        // -- JOYSTICK MOD Z_AXIS
+        case UI_ACTION_Z_UP001:
+        case UI_ACTION_Z_DOWN001:
+            if(!allowMoves) return action;
+            PrintLine::moveRelativeDistanceInStepsReal(0, 0, ((action == UI_ACTION_Z_UP001) ? 1.0 : -1.0) * Printer::axisStepsPerMM[Z_AXIS]/100, 0, JOGRATE, false,false);
+            break;
+        case UI_ACTION_Z_UP01:
+        case UI_ACTION_Z_DOWN01:
+            if(!allowMoves) return action;
+            PrintLine::moveRelativeDistanceInStepsReal(0, 0, ((action == UI_ACTION_Z_UP01) ? 1.0 : -1.0) * Printer::axisStepsPerMM[Z_AXIS]/10, 0, JOGRATE, false,false);
+            break;
+        case UI_ACTION_Z_UP1:
+        case UI_ACTION_Z_DOWN1:
+            if(!allowMoves) return action;
+            PrintLine::moveRelativeDistanceInStepsReal(0, 0, ((action == UI_ACTION_Z_UP1) ? 1.0 : -1.0) * Printer::axisStepsPerMM[Z_AXIS], 0, JOGRATE, false,false);
+            break;
+        // -- END JOYSTICK MOD Z_AXIS
+        
         case UI_ACTION_EXTRUDER_UP:
         case UI_ACTION_EXTRUDER_DOWN:
             if(!allowMoves) return action;

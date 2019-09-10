@@ -394,6 +394,101 @@ void uiCheckKeys(uint16_t &action) {
 //  UI_KEYS_CLICKENCODER_LOW_REV(47,45); // click encoder on pins 47 and 45. Phase is connected with gnd for signals.
 //  UI_KEYS_BUTTON_LOW(43,UI_ACTION_OK); // push button, connects gnd to pin
 #endif
+
+// -- JOYSTICK MOD
+// X-axis
+struct {
+uint16_t min;
+uint16_t max;
+uint16_t action;
+} 
+
+keys_x[] = {
+{ 0, 800, UI_ACTION_X_DOWN10 }, // down 10 mm steps
+{ 810, 1200, UI_ACTION_X_DOWN1 }, // down 1 mm steps
+{ 1210, 1800, UI_ACTION_X_DOWN01 }, // down 0.1 mm steps
+{ 1810, 2000, UI_ACTION_X_DOWN001 }, // down 0.01 mm steps
+
+{ 2200, 2350, UI_ACTION_X_UP001 }, // up 0.01mm steps
+{ 2370, 2500, UI_ACTION_X_UP01 }, // up 0.1 mm steps
+{ 2510, 2650, UI_ACTION_X_UP1 }, // up 1mm steps
+{ 2660, 3000, UI_ACTION_X_UP10 }, // up 10 mm steps
+};
+
+const uint8_t numOfKeys_x = sizeof(keys_x) / sizeof(keys_x[0]);
+
+extern volatile uint16_t osAnalogInputValues[ANALOG_INPUTS];
+uint16_t adc_x = osAnalogInputValues[KEYPAD_ANALOG_INDEX] >> (ANALOG_REDUCE_BITS);
+if (adc_x < 4000) {
+for (int8_t ix = 0; ix < numOfKeys_x; ++ix) {
+if ((adc_x > keys_x[ix].min) && (adc_x< keys_x[ix].max)) {
+action = keys_x[ix].action;
+return;
+}
+}
+}
+
+// Y-axis
+struct {
+uint16_t min;
+uint16_t max;
+uint16_t action;
+}
+
+keys_y[] = {
+{ 0, 800, UI_ACTION_Y_UP10 }, // Up 10 mm Steps
+{ 810, 1200, UI_ACTION_Y_UP1 }, // Up 1mm Steps
+{ 1210,1800, UI_ACTION_Y_UP01 }, // Up 0.1 mm Steps
+{ 1810,2000, UI_ACTION_Y_UP001 }, // Up 0.01 mm steps
+
+{ 2200, 2350, UI_ACTION_Y_DOWN001 }, // Down 0.01mm Steps
+{ 2370, 2500, UI_ACTION_Y_DOWN01 }, // Down 0.1mm Steps
+{ 2510, 2650, UI_ACTION_Y_DOWN1 }, // Down 1mm Steps
+{ 2660, 3000, UI_ACTION_Y_DOWN10 }, // Down 10 mm Steps
+};
+
+const uint8_t numOfKeys2 = sizeof(keys_y) / sizeof(keys_y[0]);
+
+uint16_t adc_y = osAnalogInputValues[KEYPAD2_ANALOG_INDEX] >> (ANALOG_REDUCE_BITS);
+if ( adc_y < 4000) {
+for (int8_t iy = 0; iy < numOfKeys2; ++iy) {
+if ((adc_y > keys_y[iy].min) && (adc_y < keys_y[iy].max)) {
+action = keys_y[iy].action;
+return;
+}
+}
+}
+
+// Z-Axis
+struct {
+uint16_t min;
+uint16_t max;
+uint16_t action;
+}
+
+keys_z[] = {
+{ 810, 1200, UI_ACTION_Z_UP1 }, // Up 1mm steps
+{ 1210,1800, UI_ACTION_Z_UP01 }, // Up 0.1 mm steps
+{ 1810,2000, UI_ACTION_Z_UP001 }, // Up 0.01 mm steps
+
+{ 2200, 2350, UI_ACTION_Z_DOWN001 }, //Down 0.01 mm steps
+{ 2370, 2500, UI_ACTION_Z_DOWN01 }, //Down 0.1 mm steps
+{ 2510, 2650, UI_ACTION_Z_DOWN1 }, // Down 1mm steps
+};
+
+const uint8_t numOfKeysz = sizeof(keys_z) / sizeof(keys_z[0]);
+
+uint16_t adc_z = osAnalogInputValues[KEYPAD3_ANALOG_INDEX] >> (ANALOG_REDUCE_BITS);
+if ( adc_z < 4000) {
+for (int8_t iz = 0; iz < numOfKeysz; ++iz) {
+if ((adc_z > keys_z[iz].min) && (adc_z < keys_z[iz].max)) {
+action = keys_z[iz].action;
+return;
+}
+}
+}
+// -- END JOYSTICK MOD
+
 }
 inline void uiCheckSlowEncoder() {
 #if defined(UI_HAS_I2C_KEYS) && UI_HAS_KEYS!=0

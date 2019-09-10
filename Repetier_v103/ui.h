@@ -77,6 +77,33 @@
 #define UI_ACTION_FAN_DOWN             113
 // 700-999 reserved for custom events.
 
+// -- JOYSTICK MOD
+#define UI_ACTION_X_UP1                114
+#define UI_ACTION_X_DOWN1              115
+#define UI_ACTION_X_UP01               116
+#define UI_ACTION_X_DOWN01             117
+#define UI_ACTION_X_UP001              118
+#define UI_ACTION_X_DOWN001            119
+#define UI_ACTION_X_UP10               120
+#define UI_ACTION_X_DOWN10             121
+
+#define UI_ACTION_Y_UP1                122
+#define UI_ACTION_Y_DOWN1              123
+#define UI_ACTION_Y_UP01               124
+#define UI_ACTION_Y_DOWN01             125
+#define UI_ACTION_Y_UP001              126
+#define UI_ACTION_Y_DOWN001            127
+#define UI_ACTION_Y_UP10               128
+#define UI_ACTION_Y_DOWN10             129
+
+#define UI_ACTION_Z_UP1                130
+#define UI_ACTION_Z_DOWN1              131
+#define UI_ACTION_Z_UP01               132
+#define UI_ACTION_Z_DOWN01             133
+#define UI_ACTION_Z_UP001              134
+#define UI_ACTION_Z_DOWN001            135
+// -- END JOYSTICK MOD
+
 
 #define UI_ACTION_DUMMY 10000
 #define UI_ACTION_BACK                  1000

@@ -1,41 +1,11 @@
 /*
-    This file is additional to Repetier-Firmware.
-
-    Repetier-Firmware is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    Repetier-Firmware is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Repetier-Firmware.  If not, see <http://www.gnu.org/licenses/>.
-
-    This firmware is a nearly complete rewrite of the sprinter firmware
-    by kliment (https://github.com/kliment/Sprinter)
-    which based on Tonokip RepRap firmware rewrite based off of Hydra-mmm firmware.
-
-    author of this additional File : RAyWB / Robert Ayrenschmalz
-
+MCP23017 Keypad
 */
 #ifndef CustomEvents_H
 #define CustomEvents_H
 
 
 #define FEATURE_I2C_MACROS true
-#define FEATURE_EXT_PWM true  
-
-#define FEATURE_PWM_LASER false
-#define FEATURE_ANALOG_LASER true
-#define GAMMA_CORRECTION true
-
-#define EXT_LASER_PIN 0 // PIN Number from PCA9685  
-//#define EPWM_OE 8  // Output enable for PCA9685, not needed for operation but useful to get defined Startup condition
-
-#define JOGRATE 500 //needed for manual move via Buttons
 
 //############### MCP23017 ########################
 
@@ -66,66 +36,14 @@ class MCP23017
     };
 //end MCP23017
 
-
-//############### MCP4725 ########################
-
-#define MCP4725_COMMAND 0x40
-
-class MCP4725
-{
-  public:
-  MCP4725(uint8_t address);
-  void Init(void);
-  void WriteOutput(uint16_t value);
-  
-  private:
-  uint8_t i2c_add;
-  
-    };
-//end MCP4725
-
-
-
-//############### PCA9685 ########################
-
-class PCAPWM
-{
-    public:
-    PCAPWM(uint8_t address);
-    void Init(void);
-    void SetFREQ(float freq);
-    void SetPWM(uint8_t num, uint16_t on, uint16_t off);
-    void SetPIN(uint8_t num, uint16_t val, bool invert=false);
-   
-    private:
-    uint8_t PCA_addr;
-};
-
-// end PCA9685
-
-extern bool SetLaser(uint16_t newIntensity);
-extern void Custom_100MS();
-extern void Custom_500MS();
-extern void Custom_Init();
+// Function list
 extern void Custom_Init_Early();
 extern int  Custom_Execute(int action,bool allowMoves);
-extern bool Custom_GCode(GCode *com);
-extern bool Custom_MCode(GCode *com);
 extern int  Custom_CheckSlowKeys();
-
 
 // replace original stuff
 #undef EVENT_UI_EXECUTE
 #define EVENT_UI_EXECUTE(action,allowMoves) Custom_Execute(action,allowMoves)
-
-#undef EVENT_TIMER_100MS
-#define EVENT_TIMER_100MS {Custom_100MS();}
-
-#undef EVENT_TIMER_500MS
-#define EVENT_TIMER_500MS {Custom_500MS();}
-
-#undef EVENT_INITIALIZE 
-#define EVENT_INITIALIZE {Custom_Init();}
 
 #undef EVENT_INITIALIZE_EARLY
 #define EVENT_INITIALIZE_EARLY {Custom_Init_Early();}
@@ -135,22 +53,6 @@ extern int  Custom_CheckSlowKeys();
 
 #undef EVENT_CHECK_FAST_KEYS(action) {}
 #define EVENT_CHECK_FAST_KEYS(action) {}
-
-//G and M code replacements and /or additional
-#undef EVENT_UNHANDLED_G_CODE(c) 
-#define EVENT_UNHANDLED_G_CODE(c) Custom_GCode(c) 
-
-#undef EVENT_UNHANDLED_M_CODE(c) 
-#define EVENT_UNHANDLED_M_CODE(c) Custom_MCode(c)
-
-// replacement Laser driver
-
-#undef EVENT_INITIALIZE_LASER
-#undef EVENT_SET_LASER(newIntensity)
-
-#define EVENT_INITIALIZE_LASER  false
-#define EVENT_SET_LASER(newIntensity)  SetLaser(newIntensity)
-
 
 #define RunMacro(macro) GCode::executeFString(PSTR(macro))
 

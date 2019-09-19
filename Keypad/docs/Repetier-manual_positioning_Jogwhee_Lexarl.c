@@ -1,5 +1,5 @@
-used board RAMPS 1.4, used connector AUX2 for joystick connection. Used FW ... 0.92.8 (i hope not important).
-it's not perfect, but usable. Let me know if you find any improvement..
+// used board RAMPS 1.4, used connector AUX2 for joystick connection. Used FW ... 0.92.8 (i hope not important).
+// it's not perfect, but usable. Let me know if you find any improvement..
 
 // -----------------------------------------------------
 // add into "pins.h" section "RAMPS_V_1_3"

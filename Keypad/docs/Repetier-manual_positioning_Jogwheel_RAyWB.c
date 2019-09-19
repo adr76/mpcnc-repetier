@@ -32,10 +32,12 @@ UI_KEYS_BUTTON_LOW(47,UI_ACTION_OK); // push button, connects gnd to pin
 // Here starts Joystick assignment
 // button assignment x-axis
 struct {
-uint16_t min;
-uint16_t max;
-uint16_t action;
-} keys_x[] = {
+  uint16_t min;
+  uint16_t max;
+  uint16_t action;
+} 
+
+keys_x[] = {
 { 0, 800, UI_ACTION_X_DOWN10 }, // down 10 mm steps
 { 810, 1200, UI_ACTION_X_DOWN1 }, // down 1 mm steps
 { 1210, 1800, UI_ACTION_X_DOWN01 }, // down 0.1 mm steps
@@ -46,17 +48,20 @@ uint16_t action;
 { 2510, 2650, UI_ACTION_X_UP1 }, // up 1mm steps
 { 2660, 3000, UI_ACTION_X_UP10 }, // up 10 mm steps
 };
+
 const uint8_t numOfKeys_x = sizeof(keys_x) / sizeof(keys_x[0]);
 
 extern volatile uint16_t osAnalogInputValues[ANALOG_INPUTS];
+
 uint16_t adc_x = osAnalogInputValues[KEYPAD_ANALOG_INDEX] >> (ANALOG_REDUCE_BITS);
+
 if (adc_x < 4000) {
-for (int8_t ix = 0; ix < numOfKeys_x; ++ix) {
-if ((adc_x > keys_x[ix].min) && (adc_x< keys_x[ix].max)) {
-action = keys_x[ix].action;
-return;
-}
-}
+  for (int8_t ix = 0; ix < numOfKeys_x; ++ix) {
+    if ((adc_x > keys_x[ix].min) && (adc_x< keys_x[ix].max)) {
+      action = keys_x[ix].action;
+      return;
+    }
+    }
 }
 
 //button assignment y-axis

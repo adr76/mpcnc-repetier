@@ -14,13 +14,13 @@
 
 *.lnk
 *.zip
-#*.hex
+*.hex
 ~$*
 *.stl
 Резервная_копия_*.cdr
-#/hex
-#/res
-#/sw
-#/soft
-#/test
+/hex
+/res
+/sw
+/soft
+/test
 

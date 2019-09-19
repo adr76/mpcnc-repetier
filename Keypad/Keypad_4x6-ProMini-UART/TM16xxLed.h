@@ -1,12 +1,7 @@
-/*
-  Matrix library example for TM1640. Kept small to fit in the limited space of an ATtiny44.
-  NOTE: compile using LTO enabled!
-  For more information see  https://github.com/maxint-rd/TM16xx
-  
-  Arduino: LED Matrix Editor 
-  http://xantorohara.github.io/led-matrix-editor/
-  http://xantorohara.blogspot.ru/2015/09/arduino-led-matrix-editor.html
-*/
+// TM1640 Led Display
+// Arduino: LED Matrix Editor 
+// http://xantorohara.github.io/led-matrix-editor/
+// http://xantorohara.blogspot.ru/2015/09/arduino-led-matrix-editor.html
 
 #include <TM1640.h>
 #include <TM16xxMatrix.h>
@@ -45,36 +40,19 @@ void setDigit(byte data, byte digit) {
   }
 }
 
-void setup()
-{
-  Serial.begin(9600);
-   
+void ledSetup(){
   module.setupDisplay(true,0); //Set intensity (0-7)
-  
   module.clearDisplay();
   matrix.setAll(false); // clear all
-
+    
   //## Matrix Led - comm catode
   //(col[0-7], row[0-7], on/off)
   //matrix.setPixel(0, 0, true); 
   //setMatrix(M_A); 
-  
+
   //## Digit Led - comm anode
   //(seg[8-15], digit[0-3], on/off)
   //matrix.setPixel(8, 0, true);  
   //setDigit(TM16XX_NUMBER_FONT[15], 1); // (segments, digit[1-4])
   setAllDigit(0x000000003f3f0671); // hex data set all digits
-}
-
-int i = 0;
-
-void loop()
-{
-/* Animate
-  setMatrix(IMAGES[i]);
-  if (++i >= IMAGES_LEN ) {
-    i = 0;
-  }
-  delay(300);
-*/
 }
